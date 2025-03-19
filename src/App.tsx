@@ -9,6 +9,7 @@ import Rent from "./pages/Rent";
 import About from "./pages/About";
 import Faq from "./pages/Faq";
 import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -43,10 +44,13 @@ const App = () => (
           <Route path="/rent/unfurnished" element={<UnfurnishedRentals />} />
           <Route path="/rent/commercial" element={<CommercialProperties />} />
           
+          {/* Blog Routes */}
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
+          
           {/* Other Routes */}
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<Faq />} />
-          <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

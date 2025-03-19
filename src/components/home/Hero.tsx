@@ -4,14 +4,23 @@ import { Search, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom';
 
 interface HeroProps {
   className?: string;
 }
 
 const Hero = ({ className }: HeroProps) => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<'buy' | 'rent'>('buy');
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [searchParams, setSearchParams] = useState({
+    location: '',
+    propertyType: '',
+    priceRange: '',
+    bedrooms: '',
+    bathrooms: '',
+  });
 
   const slides = [
     {
@@ -37,6 +46,30 @@ const Hero = ({ className }: HeroProps) => {
     }, 6000);
     return () => clearInterval(interval);
   }, [slides.length]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setSearchParams(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Create the query string from filled search params
+    const queryParams = new URLSearchParams();
+    
+    Object.entries(searchParams).forEach(([key, value]) => {
+      if (value) {
+        queryParams.append(key, value);
+      }
+    });
+    
+    // Navigate to the appropriate page with query parameters
+    navigate(`/${activeTab}?${queryParams.toString()}`);
+  };
 
   return (
     <section 
@@ -105,18 +138,26 @@ const Hero = ({ className }: HeroProps) => {
           </div>
 
           {/* Search Form */}
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSearch}>
             <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3">
               <div className="flex-1 relative">
                 <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
                 <Input 
                   type="text" 
+                  name="location"
+                  value={searchParams.location}
+                  onChange={handleInputChange}
                   placeholder="Location" 
                   className="pl-10 bg-gray-50 border-gray-200"
                 />
               </div>
               <div className="md:w-1/4">
-                <select className="w-full h-10 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:ring-qatken-blue focus:border-qatken-blue">
+                <select 
+                  name="propertyType"
+                  value={searchParams.propertyType}
+                  onChange={handleInputChange}
+                  className="w-full h-10 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:ring-qatken-blue focus:border-qatken-blue"
+                >
                   <option value="">Property Type</option>
                   <option value="apartment">Apartment</option>
                   <option value="house">House</option>
@@ -126,7 +167,12 @@ const Hero = ({ className }: HeroProps) => {
                 </select>
               </div>
               <div className="md:w-1/4">
-                <select className="w-full h-10 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:ring-qatken-blue focus:border-qatken-blue">
+                <select 
+                  name="priceRange"
+                  value={searchParams.priceRange}
+                  onChange={handleInputChange}
+                  className="w-full h-10 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:ring-qatken-blue focus:border-qatken-blue"
+                >
                   <option value="">Price Range</option>
                   <option value="0-1000000">0 - 1,000,000</option>
                   <option value="1000000-5000000">1,000,000 - 5,000,000</option>
@@ -138,7 +184,12 @@ const Hero = ({ className }: HeroProps) => {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <div className="col-span-1">
-                <select className="w-full h-10 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:ring-qatken-blue focus:border-qatken-blue">
+                <select 
+                  name="bedrooms"
+                  value={searchParams.bedrooms}
+                  onChange={handleInputChange}
+                  className="w-full h-10 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:ring-qatken-blue focus:border-qatken-blue"
+                >
                   <option value="">Bedrooms</option>
                   <option value="1">1+</option>
                   <option value="2">2+</option>
@@ -148,7 +199,12 @@ const Hero = ({ className }: HeroProps) => {
                 </select>
               </div>
               <div className="col-span-1">
-                <select className="w-full h-10 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:ring-qatken-blue focus:border-qatken-blue">
+                <select 
+                  name="bathrooms"
+                  value={searchParams.bathrooms}
+                  onChange={handleInputChange}
+                  className="w-full h-10 px-3 py-2 bg-gray-50 border border-gray-200 rounded-md focus:ring-qatken-blue focus:border-qatken-blue"
+                >
                   <option value="">Bathrooms</option>
                   <option value="1">1+</option>
                   <option value="2">2+</option>
@@ -157,7 +213,7 @@ const Hero = ({ className }: HeroProps) => {
                 </select>
               </div>
               <div className="col-span-2">
-                <Button className="w-full bg-qatken-blue hover:bg-qatken-blue/90 h-10">
+                <Button type="submit" className="w-full bg-qatken-blue hover:bg-qatken-blue/90 h-10">
                   <Search className="mr-2 h-4 w-4" /> Search Properties
                 </Button>
               </div>

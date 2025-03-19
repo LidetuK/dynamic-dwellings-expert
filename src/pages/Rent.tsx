@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from '@/lib/utils';
+import { useToast } from '@/components/ui/use-toast';
 
 // Mock data for properties with properly typed 'status' properties
 const mockProperties = [
@@ -119,6 +120,7 @@ const mockProperties = [
 
 const Rent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { toast } = useToast();
   const [activeType, setActiveType] = useState<'furnished' | 'unfurnished' | 'commercial'>(
     searchParams.get('type') === 'unfurnished' 
       ? 'unfurnished' 
@@ -128,13 +130,71 @@ const Rent = () => {
   );
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const [filters, setFilters] = useState({
+    priceRange: searchParams.get('priceRange') || '',
+    propertyType: searchParams.get('propertyType') || '',
+    bedrooms: searchParams.get('bedrooms') || '',
+    bathrooms: searchParams.get('bathrooms') || '',
+    location: searchParams.get('location') || ''
+  });
 
-  // Filter properties based on active type
-  const filteredProperties = mockProperties.filter(property => {
+  useEffect(() => {
+    const location = searchParams.get('location');
+    const propertyType = searchParams.get('propertyType');
+    const priceRange = searchParams.get('priceRange');
+    
+    if (location || propertyType || priceRange) {
+      setIsFilterOpen(true);
+      
+      const newFilters = { ...filters };
+      for (const [key, value] of searchParams.entries()) {
+        if (key in newFilters) {
+          newFilters[key as keyof typeof newFilters] = value;
+        }
+      }
+      setFilters(newFilters);
+      
+      toast({
+        title: "Search Applied",
+        description: "Your search criteria has been applied to the results.",
+      });
+      
+      if (location) {
+        setSearchTerm(location);
+      }
+    }
+  }, []);
+
+  let filteredProperties = mockProperties.filter(property => {
     return property.type === 'rent' && property.status === activeType;
   });
 
-  // Further filter by search term if any
+  filteredProperties = filteredProperties.filter(property => {
+    if (filters.location && !property.location.toLowerCase().includes(filters.location.toLowerCase())) {
+      return false;
+    }
+    
+    if (filters.priceRange) {
+      const [min, max] = filters.priceRange.split('-').map(Number);
+      if (max) {
+        if (property.price < min || property.price > max) return false;
+      } else if (filters.priceRange.includes('+')) {
+        const minValue = parseInt(filters.priceRange);
+        if (property.price < minValue) return false;
+      }
+    }
+    
+    if (filters.bedrooms && property.beds < parseInt(filters.bedrooms)) {
+      return false;
+    }
+    
+    if (filters.bathrooms && property.baths < parseInt(filters.bathrooms)) {
+      return false;
+    }
+    
+    return true;
+  });
+
   const searchedProperties = searchTerm
     ? filteredProperties.filter(
         property =>
@@ -143,14 +203,40 @@ const Rent = () => {
       )
     : filteredProperties;
 
+  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFilters(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const applyFilters = () => {
+    const params = new URLSearchParams();
+    params.append('type', activeType);
+    
+    Object.entries(filters).forEach(([key, value]) => {
+      if (value) {
+        params.append(key, value);
+      }
+    });
+    
+    setSearchParams(params);
+    
+    toast({
+      title: "Filters Applied",
+      description: "The properties have been filtered according to your criteria.",
+    });
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Update URL when activeType changes
-    setSearchParams({ type: activeType });
+    const params = new URLSearchParams(searchParams);
+    params.set('type', activeType);
+    setSearchParams(params);
   }, [activeType, setSearchParams]);
 
-  // Update activeType when URL param changes
   useEffect(() => {
     const typeParam = searchParams.get('type');
     if (typeParam === 'furnished' || typeParam === 'unfurnished' || typeParam === 'commercial') {
@@ -162,7 +248,6 @@ const Rent = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1 pt-24">
-        {/* Page Header */}
         <div className="bg-qatken-blue text-white py-12">
           <div className="container mx-auto px-4">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">Properties for Rent</h1>
@@ -172,10 +257,8 @@ const Rent = () => {
           </div>
         </div>
 
-        {/* Tabs and Filters section */}
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-            {/* Search Bar */}
             <div className="relative w-full md:w-auto md:min-w-[300px]">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
               <Input 
@@ -187,7 +270,6 @@ const Rent = () => {
               />
             </div>
 
-            {/* Tabs */}
             <Tabs 
               defaultValue={activeType} 
               value={activeType} 
@@ -207,7 +289,6 @@ const Rent = () => {
               </TabsList>
             </Tabs>
 
-            {/* Filter Button (Mobile) */}
             <Button 
               variant="outline" 
               className="md:hidden w-full" 
@@ -217,7 +298,6 @@ const Rent = () => {
               {isFilterOpen ? "Close Filters" : "Filters"}
             </Button>
 
-            {/* Filter Button (Desktop) */}
             <Button 
               variant="outline" 
               className="hidden md:flex" 
@@ -227,14 +307,18 @@ const Rent = () => {
             </Button>
           </div>
 
-          {/* Filter Panel */}
           <div className={cn(
             "grid grid-cols-1 md:grid-cols-4 gap-4 bg-gray-50 p-4 rounded-lg mb-8 transition-all duration-300",
             isFilterOpen ? "block" : "hidden"
           )}>
             <div>
               <label className="text-sm font-medium text-gray-700 block mb-2">Price Range</label>
-              <select className="w-full p-2 border border-gray-200 rounded-md">
+              <select 
+                className="w-full p-2 border border-gray-200 rounded-md"
+                name="priceRange"
+                value={filters.priceRange}
+                onChange={handleFilterChange}
+              >
                 <option value="">Any Price</option>
                 <option value="0-50000">0 - 50,000</option>
                 <option value="50000-100000">50,000 - 100,000</option>
@@ -245,7 +329,12 @@ const Rent = () => {
             </div>
             <div>
               <label className="text-sm font-medium text-gray-700 block mb-2">Property Type</label>
-              <select className="w-full p-2 border border-gray-200 rounded-md">
+              <select 
+                className="w-full p-2 border border-gray-200 rounded-md"
+                name="propertyType"
+                value={filters.propertyType}
+                onChange={handleFilterChange}
+              >
                 <option value="">All Types</option>
                 <option value="apartment">Apartment</option>
                 <option value="house">House</option>
@@ -258,7 +347,12 @@ const Rent = () => {
             </div>
             <div>
               <label className="text-sm font-medium text-gray-700 block mb-2">Bedrooms</label>
-              <select className="w-full p-2 border border-gray-200 rounded-md">
+              <select 
+                className="w-full p-2 border border-gray-200 rounded-md"
+                name="bedrooms"
+                value={filters.bedrooms}
+                onChange={handleFilterChange}
+              >
                 <option value="">Any</option>
                 <option value="1">1+</option>
                 <option value="2">2+</option>
@@ -268,11 +362,10 @@ const Rent = () => {
               </select>
             </div>
             <div className="flex items-end">
-              <Button className="w-full">Apply Filters</Button>
+              <Button className="w-full" onClick={applyFilters}>Apply Filters</Button>
             </div>
           </div>
 
-          {/* Property Categories */}
           <div className="mb-8">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-2xl font-bold">Browse Rental Properties</h2>
@@ -335,7 +428,6 @@ const Rent = () => {
             </TabsContent>
           </div>
 
-          {/* Pagination */}
           {searchedProperties.length > 0 && (
             <div className="flex justify-center space-x-2">
               <Button variant="outline" disabled>Previous</Button>
