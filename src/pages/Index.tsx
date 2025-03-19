@@ -10,6 +10,9 @@ import Testimonials from '@/components/home/Testimonials';
 import Stats from '@/components/home/Stats';
 import Partners from '@/components/home/Partners';
 import PropertyProcess from '@/components/home/PropertyProcess';
+import InvestmentOpportunities from '@/components/home/InvestmentOpportunities';
+import NeighborhoodGuide from '@/components/home/NeighborhoodGuide';
+import LatestBlogPosts from '@/components/home/LatestBlogPosts';
 
 const Index = () => {
   useEffect(() => {
@@ -59,6 +62,10 @@ const Index = () => {
         </div>
         
         <div className="animate-on-scroll">
+          <NeighborhoodGuide />
+        </div>
+        
+        <div className="animate-on-scroll">
           <Services />
         </div>
         
@@ -67,7 +74,15 @@ const Index = () => {
         </div>
         
         <div className="animate-on-scroll">
+          <InvestmentOpportunities />
+        </div>
+        
+        <div className="animate-on-scroll">
           <Testimonials />
+        </div>
+        
+        <div className="animate-on-scroll">
+          <LatestBlogPosts />
         </div>
         
         <div className="animate-on-scroll">
