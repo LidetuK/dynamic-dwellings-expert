@@ -41,7 +41,7 @@ const Hero = ({ className }: HeroProps) => {
   return (
     <section 
       className={cn(
-        "relative min-h-[85vh] flex items-center justify-center overflow-hidden",
+        "relative min-h-[100vh] flex items-center justify-center overflow-hidden",
         className
       )}
     >

@@ -6,6 +6,10 @@ import Hero from '@/components/home/Hero';
 import FeaturedProperties from '@/components/home/FeaturedProperties';
 import Services from '@/components/home/Services';
 import CallToAction from '@/components/home/CallToAction';
+import Testimonials from '@/components/home/Testimonials';
+import Stats from '@/components/home/Stats';
+import Partners from '@/components/home/Partners';
+import PropertyProcess from '@/components/home/PropertyProcess';
 
 const Index = () => {
   useEffect(() => {
@@ -51,7 +55,23 @@ const Index = () => {
         </div>
         
         <div className="animate-on-scroll">
+          <Stats />
+        </div>
+        
+        <div className="animate-on-scroll">
           <Services />
+        </div>
+        
+        <div className="animate-on-scroll">
+          <PropertyProcess />
+        </div>
+        
+        <div className="animate-on-scroll">
+          <Testimonials />
+        </div>
+        
+        <div className="animate-on-scroll">
+          <Partners />
         </div>
         
         <div className="animate-on-scroll">
