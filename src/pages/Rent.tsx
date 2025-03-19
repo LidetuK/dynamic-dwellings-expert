@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { Search, SlidersHorizontal, Home, Building, Briefcase, Filter, X } from 'lucide-react';
+import { useSearchParams, Link } from 'react-router-dom';
+import { Search, SlidersHorizontal, Home, Building, Briefcase, Filter, X, ArrowRight } from 'lucide-react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import PropertyCard from '@/components/ui/PropertyCard';
@@ -10,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from '@/lib/utils';
 
-// Mock data for properties
+// Mock data for properties with properly typed 'type' property
 const mockProperties = [
   {
     id: "3",
@@ -21,7 +20,7 @@ const mockProperties = [
     baths: 1,
     area: 650,
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
-    type: "rent",
+    type: 'rent' as const,
     status: "furnished",
     featured: true
   },
@@ -34,7 +33,7 @@ const mockProperties = [
     baths: 2,
     area: 1800,
     image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
-    type: "rent",
+    type: 'rent' as const,
     status: "commercial",
     featured: true
   },
@@ -47,7 +46,7 @@ const mockProperties = [
     baths: 3,
     area: 1800,
     image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
-    type: "rent",
+    type: 'rent' as const,
     status: "furnished",
     featured: true
   },
@@ -60,7 +59,7 @@ const mockProperties = [
     baths: 2,
     area: 1450,
     image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
-    type: "rent",
+    type: 'rent' as const,
     status: "unfurnished",
     featured: false
   },
@@ -73,7 +72,7 @@ const mockProperties = [
     baths: 2,
     area: 1200,
     image: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
-    type: "rent",
+    type: 'rent' as const,
     status: "furnished",
     featured: false
   },
@@ -86,7 +85,7 @@ const mockProperties = [
     baths: 3,
     area: 3200,
     image: "https://images.unsplash.com/photo-1592928302636-c83cf1e1c887?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
-    type: "rent",
+    type: 'rent' as const,
     status: "unfurnished",
     featured: false
   },
@@ -99,7 +98,7 @@ const mockProperties = [
     baths: 2,
     area: 2500,
     image: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
-    type: "rent",
+    type: 'rent' as const,
     status: "commercial",
     featured: false
   },
@@ -112,7 +111,7 @@ const mockProperties = [
     baths: 4,
     area: 5000,
     image: "https://images.unsplash.com/photo-1540821924489-7690c70c4eac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
-    type: "rent",
+    type: 'rent' as const,
     status: "commercial",
     featured: true
   }
@@ -173,7 +172,7 @@ const Rent = () => {
           </div>
         </div>
 
-        {/* Filters and Tabs */}
+        {/* Tabs and Filters section */}
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
             {/* Search Bar */}
@@ -273,8 +272,28 @@ const Rent = () => {
             </div>
           </div>
 
-          {/* Property Listings */}
+          {/* Property Categories */}
           <div className="mb-8">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-2xl font-bold">Browse Rental Properties</h2>
+              <div className="flex space-x-3">
+                <Button asChild variant="outline">
+                  <Link to="/rent/furnished">
+                    Furnished <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link to="/rent/unfurnished">
+                    Unfurnished <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline">
+                  <Link to="/rent/commercial">
+                    Commercial <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
             <TabsContent value="furnished" className="mt-0">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {searchedProperties.length > 0 ? (

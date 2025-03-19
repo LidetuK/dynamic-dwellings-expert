@@ -48,8 +48,8 @@ const Header = () => {
       path: '/buy', 
       dropdown: true,
       items: [
-        { label: 'Completed', path: '/buy?type=completed' },
-        { label: 'Ongoing', path: '/buy?type=ongoing' }
+        { label: 'Completed', path: '/buy/completed' },
+        { label: 'Ongoing', path: '/buy/ongoing' }
       ]
     },
     { 
@@ -57,9 +57,9 @@ const Header = () => {
       path: '/rent', 
       dropdown: true,
       items: [
-        { label: 'Furnished', path: '/rent?type=furnished' },
-        { label: 'Unfurnished', path: '/rent?type=unfurnished' },
-        { label: 'Commercial', path: '/rent?type=commercial' }
+        { label: 'Furnished', path: '/rent/furnished' },
+        { label: 'Unfurnished', path: '/rent/unfurnished' },
+        { label: 'Commercial', path: '/rent/commercial' }
       ]
     },
     { label: 'About Us', path: '/about' },
