@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Search, SlidersHorizontal, Filter, X } from 'lucide-react';
 import Header from '@/components/layout/Header';
@@ -8,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
-// Mock data for completed properties
+// Mock data for completed properties with properly typed status
 const completedProperties = [
   {
     id: "1",
@@ -20,7 +19,7 @@ const completedProperties = [
     area: 1200,
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
     type: 'sale' as const,
-    status: "completed",
+    status: "completed" as const,
     featured: true
   },
   {
@@ -33,7 +32,7 @@ const completedProperties = [
     area: 2500,
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
     type: 'sale' as const,
-    status: "completed",
+    status: "completed" as const,
     featured: false
   },
   {
@@ -46,7 +45,7 @@ const completedProperties = [
     area: 1800,
     image: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'sale' as const,
-    status: "completed",
+    status: "completed" as const,
     featured: false
   },
   {
@@ -59,7 +58,7 @@ const completedProperties = [
     area: 2200,
     image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'sale' as const,
-    status: "completed",
+    status: "completed" as const,
     featured: false
   },
   {
@@ -72,7 +71,7 @@ const completedProperties = [
     area: 950,
     image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'sale' as const,
-    status: "completed",
+    status: "completed" as const,
     featured: false
   }
 ];

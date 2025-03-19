@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Search, SlidersHorizontal, Filter, X } from 'lucide-react';
 import Header from '@/components/layout/Header';
@@ -8,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
-// Mock data for commercial properties
+// Mock data for commercial properties with properly typed status
 const commercialProperties = [
   {
     id: "4",
@@ -20,7 +19,7 @@ const commercialProperties = [
     area: 1800,
     image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "commercial",
+    status: "commercial" as const,
     featured: true
   },
   {
@@ -33,7 +32,7 @@ const commercialProperties = [
     area: 2500,
     image: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "commercial",
+    status: "commercial" as const,
     featured: false
   },
   {
@@ -46,7 +45,7 @@ const commercialProperties = [
     area: 5000,
     image: "https://images.unsplash.com/photo-1540821924489-7690c70c4eac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "commercial",
+    status: "commercial" as const,
     featured: true
   },
   {
@@ -59,7 +58,7 @@ const commercialProperties = [
     area: 800,
     image: "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     type: 'rent' as const,
-    status: "commercial",
+    status: "commercial" as const,
     featured: false
   },
   {
@@ -72,7 +71,7 @@ const commercialProperties = [
     area: 8000,
     image: "https://images.unsplash.com/photo-1565610222536-ef125c59da2e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     type: 'rent' as const,
-    status: "commercial",
+    status: "commercial" as const,
     featured: false
   }
 ];

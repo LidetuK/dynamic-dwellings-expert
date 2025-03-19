@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Search, SlidersHorizontal, Filter, X } from 'lucide-react';
 import Header from '@/components/layout/Header';
@@ -8,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
-// Mock data for ongoing projects
+// Mock data for ongoing projects with properly typed status
 const ongoingProperties = [
   {
     id: "5",
@@ -20,7 +19,7 @@ const ongoingProperties = [
     area: 4500,
     image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'sale' as const,
-    status: "ongoing",
+    status: "ongoing" as const,
     featured: true
   },
   {
@@ -33,7 +32,7 @@ const ongoingProperties = [
     area: 5500,
     image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'sale' as const,
-    status: "ongoing",
+    status: "ongoing" as const,
     featured: true
   },
   {
@@ -46,7 +45,7 @@ const ongoingProperties = [
     area: 1650,
     image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'sale' as const,
-    status: "ongoing",
+    status: "ongoing" as const,
     featured: true
   },
   {
@@ -59,7 +58,7 @@ const ongoingProperties = [
     area: 1200,
     image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
     type: 'sale' as const,
-    status: "ongoing",
+    status: "ongoing" as const,
     featured: false
   },
   {
@@ -72,7 +71,7 @@ const ongoingProperties = [
     area: 1800,
     image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     type: 'sale' as const,
-    status: "ongoing",
+    status: "ongoing" as const,
     featured: false
   }
 ];

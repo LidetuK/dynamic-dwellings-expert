@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Search, SlidersHorizontal, Filter, X } from 'lucide-react';
 import Header from '@/components/layout/Header';
@@ -8,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/lib/utils';
 
-// Mock data for unfurnished properties
+// Mock data for unfurnished properties with properly typed status
 const unfurnishedProperties = [
   {
     id: "12",
@@ -20,7 +19,7 @@ const unfurnishedProperties = [
     area: 1450,
     image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "unfurnished",
+    status: "unfurnished" as const,
     featured: false
   },
   {
@@ -33,7 +32,7 @@ const unfurnishedProperties = [
     area: 3200,
     image: "https://images.unsplash.com/photo-1592928302636-c83cf1e1c887?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "unfurnished",
+    status: "unfurnished" as const,
     featured: false
   },
   {
@@ -46,7 +45,7 @@ const unfurnishedProperties = [
     area: 1200,
     image: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     type: 'rent' as const,
-    status: "unfurnished",
+    status: "unfurnished" as const,
     featured: true
   },
   {
@@ -59,7 +58,7 @@ const unfurnishedProperties = [
     area: 2400,
     image: "https://images.unsplash.com/photo-1571055107559-3e67626fa8be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1331&q=80",
     type: 'rent' as const,
-    status: "unfurnished",
+    status: "unfurnished" as const,
     featured: true
   }
 ];

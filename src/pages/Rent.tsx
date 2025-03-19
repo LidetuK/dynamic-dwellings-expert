@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from '@/lib/utils';
 
-// Mock data for properties with properly typed 'type' property
+// Mock data for properties with properly typed 'status' properties
 const mockProperties = [
   {
     id: "3",
@@ -21,7 +21,7 @@ const mockProperties = [
     area: 650,
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "furnished",
+    status: "furnished" as const,
     featured: true
   },
   {
@@ -34,7 +34,7 @@ const mockProperties = [
     area: 1800,
     image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "commercial",
+    status: "commercial" as const,
     featured: true
   },
   {
@@ -47,7 +47,7 @@ const mockProperties = [
     area: 1800,
     image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "furnished",
+    status: "furnished" as const,
     featured: true
   },
   {
@@ -60,7 +60,7 @@ const mockProperties = [
     area: 1450,
     image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "unfurnished",
+    status: "unfurnished" as const,
     featured: false
   },
   {
@@ -73,7 +73,7 @@ const mockProperties = [
     area: 1200,
     image: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "furnished",
+    status: "furnished" as const,
     featured: false
   },
   {
@@ -86,7 +86,7 @@ const mockProperties = [
     area: 3200,
     image: "https://images.unsplash.com/photo-1592928302636-c83cf1e1c887?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "unfurnished",
+    status: "unfurnished" as const,
     featured: false
   },
   {
@@ -99,7 +99,7 @@ const mockProperties = [
     area: 2500,
     image: "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "commercial",
+    status: "commercial" as const,
     featured: false
   },
   {
@@ -112,7 +112,7 @@ const mockProperties = [
     area: 5000,
     image: "https://images.unsplash.com/photo-1540821924489-7690c70c4eac?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "commercial",
+    status: "commercial" as const,
     featured: true
   }
 ];

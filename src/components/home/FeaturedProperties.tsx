@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -6,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import PropertyCard from '@/components/ui/PropertyCard';
 import { cn } from '@/lib/utils';
 
-// Mock data for properties with properly typed 'type' property
+// Mock data for properties with properly typed 'type' and 'status' properties
 const mockProperties = [
   {
     id: "1",
@@ -18,7 +17,7 @@ const mockProperties = [
     area: 1200,
     image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
     type: 'sale' as const,
-    status: "completed",
+    status: "completed" as const,
     featured: true
   },
   {
@@ -31,7 +30,7 @@ const mockProperties = [
     area: 2500,
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
     type: 'sale' as const,
-    status: "completed",
+    status: "completed" as const,
     featured: true
   },
   {
@@ -44,7 +43,7 @@ const mockProperties = [
     area: 650,
     image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "furnished",
+    status: "furnished" as const,
     featured: true
   },
   {
@@ -57,7 +56,7 @@ const mockProperties = [
     area: 1800,
     image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "commercial",
+    status: "commercial" as const,
     featured: true
   },
   {
@@ -70,7 +69,7 @@ const mockProperties = [
     area: 4500,
     image: "https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'sale' as const,
-    status: "ongoing",
+    status: "ongoing" as const,
     featured: true
   },
   {
@@ -83,7 +82,7 @@ const mockProperties = [
     area: 1800,
     image: "https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80",
     type: 'rent' as const,
-    status: "furnished",
+    status: "furnished" as const,
     featured: true
   }
 ];
