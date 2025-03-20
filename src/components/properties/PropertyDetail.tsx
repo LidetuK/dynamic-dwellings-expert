@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import PropertyCard from '@/components/ui/PropertyCard';
 import { Property } from '@/data/properties';
 import { cn } from '@/lib/utils';
 
@@ -66,7 +67,7 @@ const PropertyDetail = ({ property, similarProperties = [] }: PropertyDetailProp
           </div>
         </div>
         <div className="mt-4 md:mt-0 text-2xl md:text-3xl font-bold text-qatken-blue">
-          {property.priceUnit || 'KSh'} {formatPrice(property.price)}
+          KSh {formatPrice(property.price)}
           {property.type === 'rent' && <span className="text-gray-500 text-sm font-normal">/mo</span>}
         </div>
       </div>
@@ -204,7 +205,7 @@ const PropertyDetail = ({ property, similarProperties = [] }: PropertyDetailProp
                   </p>
                   <p className="text-gray-700">
                     Available for {property.type === 'sale' ? 'purchase' : 'rent'} at 
-                    {property.priceUnit || 'KSh'} {formatPrice(property.price)} 
+                    KSh {formatPrice(property.price)} 
                     {property.type === 'rent' ? ' per month' : ''}.
                   </p>
                 </CardContent>
@@ -392,9 +393,7 @@ const PropertyDetail = ({ property, similarProperties = [] }: PropertyDetailProp
           <h2 className="text-2xl font-bold mb-6">Similar Properties</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {similarProperties.slice(0, 3).map((prop) => (
-              <div key={prop.id}>
-                <PropertyCard {...prop} />
-              </div>
+              <PropertyCard key={prop.id} {...prop} />
             ))}
           </div>
         </div>
