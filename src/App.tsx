@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +13,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import PropertyDetail from "./pages/PropertyDetail";
 
 // Buy inner pages
 import CompletedProperties from "./pages/buy/CompletedProperties";
@@ -43,6 +45,9 @@ const App = () => (
           <Route path="/rent/furnished" element={<FurnishedRentals />} />
           <Route path="/rent/unfurnished" element={<UnfurnishedRentals />} />
           <Route path="/rent/commercial" element={<CommercialProperties />} />
+          
+          {/* Property Detail */}
+          <Route path="/property/:id" element={<PropertyDetail />} />
           
           {/* Blog Routes */}
           <Route path="/blog" element={<Blog />} />

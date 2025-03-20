@@ -5,6 +5,7 @@ import { Heart, MapPin, Bed, Bath, Square, Tag } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 export interface PropertyCardProps {
   id: string;
@@ -40,6 +41,7 @@ const PropertyCard = ({
   className,
 }: PropertyCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
+  const isMobile = useIsMobile();
 
   const toggleLike = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -75,7 +77,7 @@ const PropertyCard = ({
           )}
           
           {status && (
-            <div className="absolute top-3 right-3 bg-qatken-blue text-white px-3 py-1 text-xs font-semibold rounded-full z-10">
+            <div className="absolute top-3 right-12 bg-qatken-blue text-white px-3 py-1 text-xs font-semibold rounded-full z-10">
               {status.charAt(0).toUpperCase() + status.slice(1)}
             </div>
           )}
@@ -103,7 +105,7 @@ const PropertyCard = ({
             </span>
           </div>
           
-          <h3 className="text-lg font-semibold text-gray-800 line-clamp-1 group-hover:text-qatken-blue transition-colors">
+          <h3 className="text-base sm:text-lg font-semibold text-gray-800 line-clamp-1 group-hover:text-qatken-blue transition-colors">
             {title}
           </h3>
           
@@ -113,26 +115,26 @@ const PropertyCard = ({
           </div>
           
           <div className="flex items-center justify-between border-t border-gray-100 pt-3 mt-3">
-            <div className="flex space-x-4">
+            <div className="flex space-x-2 sm:space-x-4">
               <div className="flex items-center text-gray-700" title="Bedrooms">
                 <Bed size={16} className="mr-1 text-gray-500" />
-                <span className="text-sm">{beds}</span>
+                <span className="text-xs sm:text-sm">{beds}</span>
               </div>
               <div className="flex items-center text-gray-700" title="Bathrooms">
                 <Bath size={16} className="mr-1 text-gray-500" />
-                <span className="text-sm">{baths}</span>
+                <span className="text-xs sm:text-sm">{baths}</span>
               </div>
               <div className="flex items-center text-gray-700" title="Area">
                 <Square size={16} className="mr-1 text-gray-500" />
-                <span className="text-sm">{area} {areaUnit}</span>
+                <span className="text-xs sm:text-sm">{area} {areaUnit}</span>
               </div>
             </div>
           </div>
           
           <div className="mt-4 flex justify-between items-center">
-            <div className="text-qatken-blue font-bold text-lg">
+            <div className="text-qatken-blue font-bold text-base sm:text-lg">
               {priceUnit} {formatPrice(price)}
-              {type === 'rent' && <span className="text-gray-500 text-sm font-normal">/mo</span>}
+              {type === 'rent' && <span className="text-gray-500 text-xs sm:text-sm font-normal">/mo</span>}
             </div>
             <Button 
               variant="ghost" 

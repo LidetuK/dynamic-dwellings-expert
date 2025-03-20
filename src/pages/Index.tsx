@@ -4,6 +4,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/home/Hero';
 import FeaturedProperties from '@/components/home/FeaturedProperties';
+import FeaturedNineProperties from '@/components/home/FeaturedNineProperties';
 import Services from '@/components/home/Services';
 import CallToAction from '@/components/home/CallToAction';
 import Testimonials from '@/components/home/Testimonials';
@@ -55,6 +56,10 @@ const Index = () => {
         
         <div className="animate-on-scroll">
           <FeaturedProperties />
+        </div>
+        
+        <div className="animate-on-scroll">
+          <FeaturedNineProperties />
         </div>
         
         <div className="animate-on-scroll">
