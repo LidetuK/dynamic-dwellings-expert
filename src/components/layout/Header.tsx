@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Phone } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -9,9 +10,24 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
+  const timeoutRef = useRef<number | null>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
+
+  const handleMouseEnter = (dropdown: string) => {
+    if (timeoutRef.current) {
+      window.clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setActiveDropdown(dropdown);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = window.setTimeout(() => {
+      setActiveDropdown(null);
+    }, 200);
+  };
 
   const toggleDropdown = (dropdown: string) => {
     setActiveDropdown(activeDropdown === dropdown ? null : dropdown);
@@ -39,6 +55,15 @@ const Header = () => {
   useEffect(() => {
     closeMenu();
   }, [location]);
+
+  // Clean up timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        window.clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const menuItems = [
     { label: 'Home', path: '/' },
@@ -119,7 +144,11 @@ const Header = () => {
           {menuItems.map((item) => (
             <div key={item.label} className="relative group">
               {item.dropdown ? (
-                <div className="flex items-center">
+                <div 
+                  className="flex items-center"
+                  onMouseEnter={() => handleMouseEnter(item.label)}
+                  onMouseLeave={handleMouseLeave}
+                >
                   <button
                     onClick={() => toggleDropdown(item.label)}
                     className={cn(
@@ -134,7 +163,7 @@ const Header = () => {
                   </button>
                   
                   <div className={cn(
-                    "absolute top-full left-0 mt-1 bg-white shadow-lg rounded-md overflow-hidden transition-all duration-200 origin-top",
+                    "absolute top-full left-0 mt-1 bg-white shadow-lg rounded-md overflow-hidden transition-all duration-200 origin-top z-50",
                     activeDropdown === item.label 
                       ? "opacity-100 scale-100" 
                       : "opacity-0 scale-95 pointer-events-none"

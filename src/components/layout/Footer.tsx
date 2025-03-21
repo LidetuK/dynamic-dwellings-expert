@@ -95,12 +95,12 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="mr-3 h-5 w-5 text-qatken-orange shrink-0 mt-0.5" />
-                <span className="text-gray-300">123 Real Estate Avenue, City Center, Country</span>
+                <span className="text-gray-300">Nextgen Mall, Mezzanine Floor, Office No. 9, Nairobi, Kenya</span>
               </li>
               <li className="flex items-center">
                 <Phone className="mr-3 h-5 w-5 text-qatken-orange shrink-0" />
-                <a href="tel:+1234567890" className="text-gray-300 hover:text-qatken-orange transition-colors">
-                  +123 456 7890
+                <a href="tel:+254714001000" className="text-gray-300 hover:text-qatken-orange transition-colors">
+                  +254 714 001 000
                 </a>
               </li>
               <li className="flex items-center">

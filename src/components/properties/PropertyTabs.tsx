@@ -1,8 +1,9 @@
 
-import { Calendar, Tag, Clock, Bed, Bath, Square, Info } from 'lucide-react';
+import { Calendar, Tag, Clock, Bed, Bath, Square } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Property } from '@/data/properties';
+import Map from '@/components/ui/Map';
 
 interface PropertyTabsProps {
   property: Property;
@@ -127,11 +128,8 @@ const PropertyTabs = ({ property, formatPrice }: PropertyTabsProps) => {
         <Card>
           <CardContent className="p-6">
             <h3 className="text-xl font-bold mb-4">Property Location</h3>
-            <div className="rounded-lg overflow-hidden h-[300px] bg-gray-100 mb-4">
-              <div className="w-full h-full flex items-center justify-center">
-                <Info size={24} className="mr-2 text-gray-400" />
-                <span className="text-gray-500">Map loading...</span>
-              </div>
+            <div className="rounded-lg overflow-hidden h-[300px] mb-4">
+              <Map height="300px" />
             </div>
             <p className="text-gray-700">
               This property is conveniently located in {property.location}, offering easy access to shopping centers, 

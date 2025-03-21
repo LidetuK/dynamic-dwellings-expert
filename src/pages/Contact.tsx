@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
+import Map from '@/components/ui/Map';
+import WhatsAppWidget from '@/components/ui/WhatsAppWidget';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -88,8 +90,8 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-gray-900">Our Location</h3>
                         <p className="text-gray-600 mt-1">
-                          123 Real Estate Avenue<br />
-                          City Center, Country
+                          Nextgen Mall, Mezzanine Floor,<br />
+                          Office No. 9, Nairobi, Kenya
                         </p>
                       </div>
                     </div>
@@ -101,11 +103,8 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-gray-900">Phone Number</h3>
                         <p className="text-gray-600 mt-1">
-                          <a href="tel:+1234567890" className="hover:text-qatken-blue transition-colors">
-                            +123 456 7890
-                          </a><br />
-                          <a href="tel:+1234567891" className="hover:text-qatken-blue transition-colors">
-                            +123 456 7891
+                          <a href="tel:+254714001000" className="hover:text-qatken-blue transition-colors">
+                            +254 714 001 000
                           </a>
                         </p>
                       </div>
@@ -120,9 +119,6 @@ const Contact = () => {
                         <p className="text-gray-600 mt-1">
                           <a href="mailto:info@qatkenproperties.com" className="hover:text-qatken-blue transition-colors">
                             info@qatkenproperties.com
-                          </a><br />
-                          <a href="mailto:sales@qatkenproperties.com" className="hover:text-qatken-blue transition-colors">
-                            sales@qatkenproperties.com
                           </a>
                         </p>
                       </div>
@@ -237,7 +233,7 @@ const Contact = () => {
                           type="tel"
                           value={formData.phone}
                           onChange={handleChange}
-                          placeholder="+123 456 7890"
+                          placeholder="+254 714 001 000"
                           className="w-full"
                         />
                       </div>
@@ -329,21 +325,14 @@ const Contact = () => {
           <div className="container mx-auto px-4">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="aspect-w-16 aspect-h-9">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7799726767444!2d36.7831046!3d-1.2982317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f109be5eb1417%3A0xf5e2b028f698b066!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2sus!4v1625772931544!5m2!1sen!2sus" 
-                  width="100%" 
-                  height="450" 
-                  style={{ border: 0 }} 
-                  allowFullScreen={true} 
-                  loading="lazy"
-                  title="Office Location Map"
-                ></iframe>
+                <Map height="450px" />
               </div>
             </div>
           </div>
         </section>
       </main>
       <Footer />
+      <WhatsAppWidget />
     </div>
   );
 };

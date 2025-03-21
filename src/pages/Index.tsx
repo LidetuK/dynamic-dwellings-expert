@@ -10,6 +10,7 @@ import Stats from '@/components/home/Stats';
 import Partners from '@/components/home/Partners';
 import PropertyProcess from '@/components/home/PropertyProcess';
 import NeighborhoodGuide from '@/components/home/NeighborhoodGuide';
+import WhatsAppWidget from '@/components/ui/WhatsAppWidget';
 
 const Index = () => {
   useEffect(() => {
@@ -79,6 +80,7 @@ const Index = () => {
         </div>
       </main>
       <Footer />
+      <WhatsAppWidget />
     </div>
   );
 };
