@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -24,6 +23,12 @@ import FurnishedRentals from "./pages/rent/FurnishedRentals";
 import UnfurnishedRentals from "./pages/rent/UnfurnishedRentals";
 import CommercialProperties from "./pages/rent/CommercialProperties";
 
+// About inner pages
+import OurStory from "./pages/about/OurStory";
+import OurTeam from "./pages/about/OurTeam";
+import OurMission from "./pages/about/OurMission";
+import OurValues from "./pages/about/OurValues";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -46,6 +51,13 @@ const App = () => (
           <Route path="/rent/unfurnished" element={<UnfurnishedRentals />} />
           <Route path="/rent/commercial" element={<CommercialProperties />} />
           
+          {/* About Routes */}
+          <Route path="/about" element={<About />} />
+          <Route path="/about/our-story" element={<OurStory />} />
+          <Route path="/about/our-team" element={<OurTeam />} />
+          <Route path="/about/our-mission" element={<OurMission />} />
+          <Route path="/about/our-values" element={<OurValues />} />
+          
           {/* Property Detail */}
           <Route path="/property/:id" element={<PropertyDetail />} />
           
@@ -54,7 +66,6 @@ const App = () => (
           <Route path="/blog/:id" element={<BlogPost />} />
           
           {/* Other Routes */}
-          <Route path="/about" element={<About />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

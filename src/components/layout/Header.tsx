@@ -62,7 +62,17 @@ const Header = () => {
         { label: 'Commercial', path: '/rent/commercial' }
       ]
     },
-    { label: 'About Us', path: '/about' },
+    { 
+      label: 'About Us', 
+      path: '/about', 
+      dropdown: true,
+      items: [
+        { label: 'Our Story', path: '/about/our-story' },
+        { label: 'Our Team', path: '/about/our-team' },
+        { label: 'Our Mission', path: '/about/our-mission' },
+        { label: 'Our Values', path: '/about/our-values' }
+      ]
+    },
     { label: 'FAQs', path: '/faq' },
     { label: 'Blog', path: '/blog' },
     { label: 'Contact Us', path: '/contact' }
