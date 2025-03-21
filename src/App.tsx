@@ -14,6 +14,8 @@ import BlogPost from "./pages/BlogPost";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import PropertyDetail from "./pages/PropertyDetail";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 
 // Buy inner pages
 import CompletedProperties from "./pages/buy/CompletedProperties";
@@ -74,6 +76,10 @@ const App = () => (
           <Route path="/investments/commercial" element={<CommercialInvestments />} />
           <Route path="/investments/funds" element={<FundsInvestments />} />
           <Route path="/investments/special" element={<SpecialInvestments />} />
+          
+          {/* Legal Pages */}
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
           
           {/* Property Detail */}
           <Route path="/property/:id" element={<PropertyDetail />} />

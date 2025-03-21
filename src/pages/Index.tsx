@@ -7,7 +7,6 @@ import FeaturedNineProperties from '@/components/home/FeaturedNineProperties';
 import Services from '@/components/home/Services';
 import CallToAction from '@/components/home/CallToAction';
 import Stats from '@/components/home/Stats';
-import Partners from '@/components/home/Partners';
 import PropertyProcess from '@/components/home/PropertyProcess';
 import NeighborhoodGuide from '@/components/home/NeighborhoodGuide';
 import WhatsAppWidget from '@/components/ui/WhatsAppWidget';
@@ -69,10 +68,6 @@ const Index = () => {
         
         <div className="animate-on-scroll">
           <PropertyProcess />
-        </div>
-        
-        <div className="animate-on-scroll">
-          <Partners />
         </div>
         
         <div className="animate-on-scroll">
