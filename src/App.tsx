@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -28,6 +29,14 @@ import OurStory from "./pages/about/OurStory";
 import OurTeam from "./pages/about/OurTeam";
 import OurMission from "./pages/about/OurMission";
 import OurValues from "./pages/about/OurValues";
+import Testimonials from "./pages/about/Testimonials";
+
+// Investment pages
+import InvestmentsIndex from "./pages/investments/Index";
+import ResidentialInvestments from "./pages/investments/ResidentialInvestments";
+import CommercialInvestments from "./pages/investments/CommercialInvestments";
+import FundsInvestments from "./pages/investments/FundsInvestments";
+import SpecialInvestments from "./pages/investments/SpecialInvestments";
 
 const queryClient = new QueryClient();
 
@@ -57,6 +66,14 @@ const App = () => (
           <Route path="/about/our-team" element={<OurTeam />} />
           <Route path="/about/our-mission" element={<OurMission />} />
           <Route path="/about/our-values" element={<OurValues />} />
+          <Route path="/about/testimonials" element={<Testimonials />} />
+          
+          {/* Investment Routes */}
+          <Route path="/investments" element={<InvestmentsIndex />} />
+          <Route path="/investments/residential" element={<ResidentialInvestments />} />
+          <Route path="/investments/commercial" element={<CommercialInvestments />} />
+          <Route path="/investments/funds" element={<FundsInvestments />} />
+          <Route path="/investments/special" element={<SpecialInvestments />} />
           
           {/* Property Detail */}
           <Route path="/property/:id" element={<PropertyDetail />} />

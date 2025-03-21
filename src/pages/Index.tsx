@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -5,13 +6,10 @@ import Hero from '@/components/home/Hero';
 import FeaturedNineProperties from '@/components/home/FeaturedNineProperties';
 import Services from '@/components/home/Services';
 import CallToAction from '@/components/home/CallToAction';
-import Testimonials from '@/components/home/Testimonials';
 import Stats from '@/components/home/Stats';
 import Partners from '@/components/home/Partners';
 import PropertyProcess from '@/components/home/PropertyProcess';
-import InvestmentOpportunities from '@/components/home/InvestmentOpportunities';
 import NeighborhoodGuide from '@/components/home/NeighborhoodGuide';
-import LatestBlogPosts from '@/components/home/LatestBlogPosts';
 
 const Index = () => {
   useEffect(() => {
@@ -70,18 +68,6 @@ const Index = () => {
         
         <div className="animate-on-scroll">
           <PropertyProcess />
-        </div>
-        
-        <div className="animate-on-scroll">
-          <InvestmentOpportunities />
-        </div>
-        
-        <div className="animate-on-scroll">
-          <Testimonials />
-        </div>
-        
-        <div className="animate-on-scroll">
-          <LatestBlogPosts />
         </div>
         
         <div className="animate-on-scroll">

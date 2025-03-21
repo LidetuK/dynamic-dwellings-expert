@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Phone } from 'lucide-react';
@@ -63,6 +62,17 @@ const Header = () => {
       ]
     },
     { 
+      label: 'Investments', 
+      path: '/investments', 
+      dropdown: true,
+      items: [
+        { label: 'Residential', path: '/investments/residential' },
+        { label: 'Commercial', path: '/investments/commercial' },
+        { label: 'REITs & Funds', path: '/investments/funds' },
+        { label: 'Special Opportunities', path: '/investments/special' }
+      ]
+    },
+    { 
       label: 'About Us', 
       path: '/about', 
       dropdown: true,
@@ -70,7 +80,8 @@ const Header = () => {
         { label: 'Our Story', path: '/about/our-story' },
         { label: 'Our Team', path: '/about/our-team' },
         { label: 'Our Mission', path: '/about/our-mission' },
-        { label: 'Our Values', path: '/about/our-values' }
+        { label: 'Our Values', path: '/about/our-values' },
+        { label: 'Testimonials', path: '/about/testimonials' }
       ]
     },
     { label: 'FAQs', path: '/faq' },
@@ -93,7 +104,6 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
-        {/* Logo */}
         <Link to="/" className="flex items-center" aria-label="Go to homepage">
           <img 
             src="/lovable-uploads/5a2f12d1-d188-4557-bc33-4f2a68ba8f70.png" 
@@ -105,7 +115,6 @@ const Header = () => {
           />
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center space-x-1">
           {menuItems.map((item) => (
             <div key={item.label} className="relative group">
@@ -160,14 +169,12 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Contact Button */}
         <div className="hidden lg:block">
           <Button className="bg-qatken-blue hover:bg-qatken-blue/90 text-white">
             <Phone className="mr-2 h-4 w-4" /> Get in Touch
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
           className="lg:hidden text-gray-700 focus:outline-none"
@@ -177,7 +184,6 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <div
         className={cn(
           "fixed inset-0 bg-white z-40 lg:hidden transition-transform duration-300 ease-in-out transform",
